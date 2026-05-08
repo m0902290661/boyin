@@ -5,6 +5,13 @@
     box-sizing: border-box;
 }
 
+@media (max-width: 768px) {
+    * {
+        padding: 5px;
+    }
+}
+
+
 body {
     font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
     line-height: 1.8;
@@ -733,5 +740,3 @@ body {
         /* 手機版一橫排兩張圖 */
     }
 }
-
- 
