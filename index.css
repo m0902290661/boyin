@@ -1,0 +1,649 @@
+/* 1. 全域與基礎設定 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+    line-height: 1.8;
+    /* 稍微增加行高，提升閱讀舒適度 */
+    color: #333;
+    background-color: #fff;
+}
+
+/* 2. Header 區塊 */
+.header {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('image 6.jpg') center / cover no-repeat;
+    display: flex;
+    align-items: center;
+    /* 確保內容垂直置中 */
+    height: 500px;
+    padding: 40px;
+    color: white;
+}
+
+.logo-img {
+    /* 解決變形與過大問題的核心兩行 */
+    height: auto;
+    /* 核心：高度自動適應寬度 */
+    max-width: 150px;
+    /* 核心：限制Logo的最大寬度，不讓它暴走 */
+
+    /* 解決模糊問題（若適用） */
+    image-rendering: -webkit-optimize-contrast;
+    /* 針對特定圖片優化解析度 */
+}
+
+/* Logo 群組容器 */
+.logo-group {
+    display: flex;
+    align-items: center;
+    /* 垂直居中 Logo 與標題 */
+    gap: 20px;
+    /* 圖案與文字的間距 */
+}
+
+/* 標題與標語容器 */
+.title-container {
+    display: flex;
+    flex-direction: column;
+    /* 讓標題與標語上下排列 */
+    justify-content: center;
+}
+
+/* 主標題樣式 */
+.site-title {
+    font-size: 2.8rem;
+    letter-spacing: 4px;
+    margin-bottom: 5px;
+    /* 與下方標語的間距 */
+    line-height: 1.2;
+}
+
+/* 標語（Slogan）樣式 */
+.site-tagline {
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    opacity: 0.9;
+    /* 稍微降低透明度，區分層次 */
+    font-weight: 300;
+    /* 使用較細的字體 */
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    /* 加入一條細微的分隔線 */
+    padding-top: 8px;
+    margin-top: 5px;
+}
+
+/* 手機版調整 */
+@media (max-width: 768px) {
+    .logo-group {
+        flex-direction: column;
+        /* 手機上改為垂直排列 */
+        text-align: center;
+    }
+
+    .site-title {
+        font-size: 2rem;
+    }
+
+    .site-tagline {
+        font-size: 0.9rem;
+    }
+}
+
+/* 3. 內容容器佈局 */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 25px;
+}
+
+.section {
+    padding: 100px 0;
+    /* 增加上下留白，視覺更開闊 */
+}
+
+.bg-light {
+    background-color: #fcfaf7;
+    /* 稍微帶點暖色調的米白，更具禪意 */
+}
+
+.section-title {
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+}
+
+/* 標題下方的裝飾線 */
+.section-title::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: #8d6e63;
+    margin: 15px auto 0;
+}
+
+/* 關於我們：圖文並排 */
+@media (min-width: 768px) {
+    .section.flex-row {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+    }
+
+    .text-content,
+    .image-box {
+        flex: 1;
+    }
+}
+
+.image-box img {
+    width: 100%;
+    display: block;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* 4. 卡片網格系統 */
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    border-top: 5px solid #8d6e63;
+    /* 改為頂部邊框，視覺引導更強 */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    margin-bottom: 15px;
+    color: #5d4037;
+    font-size: 1.4rem;
+}
+
+/* 卡片內的圖片優化 */
+.card img {
+    width: 100%;
+    height: 200px;
+    /* 固定高度 */
+    object-fit: cover;
+    /* 關鍵：讓行事曆圖片填滿且不變形 */
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+/* 5. 手機版優化 */
+@media (max-width: 768px) {
+    .header {
+        height: 350px;
+        padding: 20px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .logo-group {
+        flex-direction: column;
+        /* 手機版 Logo 在標題上方 */
+        gap: 10px;
+    }
+
+    .site-title {
+        font-size: 2rem;
+    }
+
+    .section {
+        padding: 60px 0;
+    }
+}
+
+/* 1. 小圖樣式：滑鼠移上去顯示放大鏡 */
+.zoom-img {
+    cursor: zoom-in;
+    transition: opacity 0.3s;
+}
+
+.zoom-img:hover {
+    opacity: 0.8;
+}
+
+/* 2. 燈箱背景（預設隱藏） */
+.lightbox {
+    display: none;
+    /* 平時隱藏 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    /* 黑色半透明背景 */
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 3. 當 ID 被指向 (:target) 時顯示燈箱 */
+.lightbox:target {
+    display: flex;
+}
+
+/* 4. 大圖容器設定 */
+.lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.lightbox-content img {
+    width: 100%;
+    height: auto;
+    max-height: 90vh;
+    /* 確保不超過視窗高度 */
+    object-fit: contain;
+    border: 3px solid white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* 5. 關閉按鈕與點擊背景關閉 */
+.close-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: zoom-out;
+}
+
+.close-btn {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: white;
+    font-size: 30px;
+    text-decoration: none;
+}
+
+.btn-more {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #8d6e63;
+    color: white !important;
+    border-radius: 50px;
+    /* 圓角膠囊狀 */
+    letter-spacing: 2px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(141, 110, 99, 0.3);
+}
+
+.btn-more:hover {
+    background-color: #5d4037;
+    transform: translateY(-3px);
+    /* 向上彈起感 */
+    box-shadow: 0 6px 20px rgba(141, 110, 99, 0.4);
+}
+
+/* Footer 整體樣式 */
+.footer {
+    background-color: #3e2723;
+    /* 深木頭色 */
+    color: rgba(255, 255, 255, 0.8);
+    padding: 60px 0 20px;
+    margin-top: 50px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+}
+
+/* 第一欄 Logo 與描述 */
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.footer-logo img {
+    height: 40px;
+    filter: brightness(0) invert(1);
+    /* 讓 Logo 變白色以符合深色背景 */
+}
+
+.footer-logo span {
+    font-size: 1.5rem;
+    color: white;
+    letter-spacing: 2px;
+}
+
+.footer-desc {
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+/* 標題樣式 */
+.footer h3 {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.footer h3::after {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 2px;
+    background: #8d6e63;
+    margin-top: 10px;
+}
+
+/* 聯絡清單與連結 */
+.footer ul {
+    list-style: none;
+}
+
+.footer ul li {
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.footer-links a {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #8d6e63;
+    /* 滑鼠移上去變色 */
+}
+
+/* 版權宣告 */
+.footer-bottom {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+.quick-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 40px 20px;
+    margin-top: -50px;
+    /* 稍微往上推，疊在背景圖邊緣增加設計感 */
+    position: relative;
+    z-index: 10;
+}
+
+.link-card {
+    background: white;
+    text-align: center;
+    padding: 30px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #333;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.link-card:hover {
+    transform: translateY(-10px);
+    border-bottom: 4px solid #8d6e63;
+}
+
+.link-card .icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* 讓 Header 裡面的東西排開 */
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* 導覽選單 */
+.nav-menu {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-item {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 15px;
+    border-radius: 20px;
+    transition: background 0.3s;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background: rgba(255, 255, 255, 0.2);
+    /* 當前頁面或懸浮時變色 */
+    color: #e0c39e;
+    /* 淡淡的金色感 */
+}
+
+/* 法師介紹區塊的響應式修正 */
+.abbot-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 40px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+}
+
+@media (min-width: 992px) {
+    .abbot-card {
+        flex-direction: row;
+        /* 電腦版改為左右 */
+        text-align: left;
+    }
+}
+
+.abbot-image img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #fcfaf7;
+}
+
+.monk-timeline {
+    list-style: none;
+    /* 去除預設黑點 */
+    padding: 0;
+    line-height: 2;
+    /* 增加行高，長輩閱讀更輕鬆 */
+}
+
+.monk-timeline li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 15px;
+    color: #444;
+    border-bottom: 1px dashed #eee;
+    /* 加入淡虛線分隔 */
+    padding-bottom: 10px;
+}
+
+/* 使用自定義的小圓點 */
+.monk-timeline li::before {
+    content: "•";
+    color: #8d6e63;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    font-size: 1.5rem;
+    top: -5px;
+}
+
+.monk-timeline strong {
+    color: #5d4037;
+    /* 年份加深色 */
+    font-size: 1.1rem;
+    margin-right: 5px;
+}
+
+.reconstruction-section {
+    padding: 0;
+    /* 讓背景填滿 */
+    margin-bottom: 80px;
+}
+
+.reconstruction-banner {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('temple-rebuild.jpg') center/cover;
+    padding: 80px 40px;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+}
+
+.reconstruction-text {
+    font-size: 1.2rem;
+    line-height: 2;
+    margin: 20px auto 40px;
+    max-width: 800px;
+    letter-spacing: 1px;
+}
+
+/* 按鈕美化 */
+.btn-primary {
+    background: #8d6e63;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin: 10px;
+}
+
+.btn-outline {
+    border: 2px solid white;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin: 10px;
+}
+
+.btn-primary:hover {
+    background: #5d4037;
+}
+
+.btn-outline:hover {
+    background: white;
+    color: #333;
+}
+
+/* 文字副標題 */
+.subtitle {
+    font-size: 1.2rem;
+    color: #8d6e63;
+    margin-top: -20px;
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+/* 敘事區塊佈局 */
+.story-block {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.story-content {
+    padding: 30px 0;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+}
+
+.story-content h3 {
+    color: #5d4037;
+    margin-bottom: 20px;
+}
+
+/* 圖片樣式 */
+.story-image {
+    margin: 20px 0;
+}
+
+.story-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.img-caption {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 10px;
+}
+
+/* 禪意分隔線 */
+.zen-hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, transparent, #8d6e63, transparent);
+    margin: 60px 0;
+}
+
+/* 銀行資訊框 */
+.bank-box {
+    display: inline-block;
+    background: white;
+    padding: 30px 50px;
+    border-radius: 12px;
+    border: 1px solid #e0c39e;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.bank-box p {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    font-family: monospace; /* 讓帳號數字對齊 */
+}
+
+.contact-info {
+    color: #8d6e63;
+    font-size: 0.95rem !important;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    margin-top: 15px;
+}
